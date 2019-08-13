@@ -3,7 +3,7 @@ package com.newgen;
 /**
  *
  * /*************************************************************************************************************
-* NEWGEN SOFTWARE TECHNOLOGIES LIMITED
+
 *
 * Group				: SDC
 * Module			: API For ChatBoot
