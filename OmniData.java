@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * ***********************************************************************************************************
- * NEWGEN SOFTWARE TECHNOLOGIES LIMITED
+
  *
  * Group	: SDC Module	: API For ChatBoot File Name	: OmniData.java Author	: Anil
  * Kumar A Date written	: 23/07/2019
