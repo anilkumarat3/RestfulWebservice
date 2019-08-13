@@ -12,7 +12,7 @@ import java.util.Properties;
 
 /**
  * ***********************************************************************************************************
- * NEWGEN SOFTWARE TECHNOLOGIES LIMITED
+
  *
  * Group	: SDC Module	: API For ChatBoot File Name	: Dbconnection.java Author	:
  * Anil Kumar A Date written	: 23/07/2019
