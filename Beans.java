@@ -3,16 +3,13 @@ package com.newgen;
 /**
  *
  * /*************************************************************************************************************
-
-*
-* Group				: SDC
-* Module			: API For ChatBoot
-* File Name			: Beans.java
-* Author			: Anil Kumar A
-* Date written		        : 23/07/2019
-* ************************************************************************************************************/
+ * NEWGEN SOFTWARE TECHNOLOGIES LIMITED
+ *
+ * Group	: SDC Module	: API For ChatBoot File Name	: Beans.java Author	: Anil
+ * Kumar A Date written	: 23/07/2019
+ * ***********************************************************************************************************
+ */
 public class Beans {
-
 
     private String VPNumber;
     private String VendorCode;
@@ -30,6 +27,25 @@ public class Beans {
     private String userSPOC_emailID;
     private String proc_Comments;
     private String grin_hold_commnets;
+    private String bucket_reason;
+    private String bucket_subreason;
+  
+
+    public String getBucket_reason() {
+        return bucket_reason;
+    }
+
+    public void setBucket_reason(String bucket_reason) {
+        this.bucket_reason = bucket_reason;
+    }
+
+    public String getBucket_subreason() {
+        return bucket_subreason;
+    }
+
+    public void setBucket_subreason(String bucket_subreason) {
+        this.bucket_subreason = bucket_subreason;
+    }
 
     public String getActivityName() {
         return activityName;
@@ -102,7 +118,6 @@ public class Beans {
     public void setInvoice_Date(String Invoice_Date) {
         this.Invoice_Date = Invoice_Date;
     }
-    
 
     public String getRejection_Comments() {
         return Rejection_Comments;
@@ -160,5 +175,4 @@ public class Beans {
         this.Currency = Currency;
     }
 
-   
 }

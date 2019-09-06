@@ -11,8 +11,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 /**
- *
- * @author OM33909T
+ * ***********************************************************************************************************
+ * NEWGEN SOFTWARE TECHNOLOGIES LIMITED
+ 
+  Group	: SDC
+  Module	: API For ChatBoot
+  File Name	: GenerateLog.java
+  Author	: Anil Kumar A 
+  Date written	: 23/07/2019
+ * ***********************************************************************************************************
  */
 public class GenerateLog {
 
