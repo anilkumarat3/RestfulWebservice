@@ -1,4 +1,3 @@
-
 package com.newgen;
 
 import java.util.Set;
@@ -7,14 +6,12 @@ import javax.ws.rs.core.Application;
 /**
  *
  * /*************************************************************************************************************
-* NEWGEN SOFTWARE TECHNOLOGIES LIMITED
-*
-* Group				: SDC
-* Module			: API For ChatBoot
-* File Name			: ApplicationConfig.java
-* Author			: Anil Kumar A
-* Date written		        : 23/07/2019
-* ************************************************************************************************************/
+ * NEWGEN SOFTWARE TECHNOLOGIES LIMITED
+ *
+ * Group	: SDC Module	: API For ChatBoot File Name	: ApplicationConfig.java
+ * Author	: Anil Kumar A Date written	: 23/07/2019
+ * ***********************************************************************************************************
+ */
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
 
@@ -27,5 +24,6 @@ public class ApplicationConfig extends Application {
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.newgen.OmniData.class);
+        resources.add(com.newgen.SecurityFilter.class);
     }
 }

@@ -29,7 +29,25 @@ public class Beans {
     private String grin_hold_commnets;
     private String bucket_reason;
     private String bucket_subreason;
-  
+    private String invoice_amount;
+    private String PONO;
+
+    public String getPONO() {
+        return PONO;
+    }
+
+    public void setPONO(String PONO) {
+        this.PONO = PONO;
+    }
+
+    public String getInvoice_amount() {
+        return invoice_amount;
+    }
+
+    public void setInvoice_amount(String invoice_amount) {
+        this.invoice_amount = invoice_amount;
+    }
+     
 
     public String getBucket_reason() {
         return bucket_reason;

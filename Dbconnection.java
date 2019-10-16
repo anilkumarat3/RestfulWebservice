@@ -26,10 +26,12 @@ public class Dbconnection {
     private static String databaseIP = "";
     private static String databasePort = "";
     private static String serviceName = "";
+    
+    
 
     public  Statement getConnection() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         //String initialFilePath = System.getProperty("user.dir") + File.separator + "DBProperties.ini"; it points JBoss bin directory
-        String initialFilePath = "F:\\Web Services\\OmniData\\DBProperties.ini";
+        String initialFilePath = System.getProperty("user.dir") + File.separator +"DBProperties.ini";
         log.genlog("Inside Database Connection.......");
         log.genlog("INI File path is------------>"+initialFilePath);
         FileInputStream IniFile = new FileInputStream(initialFilePath);
@@ -54,4 +56,5 @@ public class Dbconnection {
         Statement st = conn.createStatement();
         return st;
     }
+    
 }

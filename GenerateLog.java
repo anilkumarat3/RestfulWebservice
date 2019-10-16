@@ -13,12 +13,9 @@ import java.text.SimpleDateFormat;
 /**
  * ***********************************************************************************************************
  * NEWGEN SOFTWARE TECHNOLOGIES LIMITED
- 
-  Group	: SDC
-  Module	: API For ChatBoot
-  File Name	: GenerateLog.java
-  Author	: Anil Kumar A 
-  Date written	: 23/07/2019
+ *
+ * Group	: SDC Module	: API For ChatBoot File Name	: GenerateLog.java Author	:
+ * Anil Kumar A Date written	: 23/07/2019
  * ***********************************************************************************************************
  */
 public class GenerateLog {
@@ -33,7 +30,7 @@ public class GenerateLog {
             sdfDate = new SimpleDateFormat("dd_MM_yyyy");
             SimpleDateFormat sdfTime = new SimpleDateFormat("hh_mm_ss");
             strCurDate = sdfDate.format(dtCurDate);
-            strLogPath = "F:\\Web Services\\OmniData\\" + File.separator + "Log";
+            strLogPath =  System.getProperty("user.dir") + File.separator + "WebServiceLog";
             File fileExists = new File(strLogPath);
             if (fileExists.exists() == false) {
                 fileExists.mkdirs();

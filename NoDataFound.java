@@ -6,12 +6,17 @@
 package com.newgen;
 
 /**
+ * ***********************************************************************************************************
+ * NEWGEN SOFTWARE TECHNOLOGIES LIMITED
  *
- * @author OM33909T
+ * Group	: SDC Module	: API For ChatBoot File Name	: NoDataFound.java Author	:
+ * Anil Kumar A Date written	: 27/08/2019
+ * ***********************************************************************************************************
  */
 public class NoDataFound {
+
     private String no_data_found;
-    
+
     public String getNo_data_found() {
         return no_data_found;
     }
