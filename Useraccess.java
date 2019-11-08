@@ -10,15 +10,14 @@ package com.newgen;
  * @author OM33909T
  */
 public class Useraccess {
-    private String useracess;
+
+    private String Useracess;
 
     public String getUseracess() {
-        return useracess;
+        return Useracess;
     }
 
-    public void setUseracess(String useracess) {
-        this.useracess = useracess;
+    public void setUseracess(String Useracess) {
+        this.Useracess = Useracess;
     }
-    
-    
 }

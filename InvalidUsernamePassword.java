@@ -1,13 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.newgen;
 
 /**
+ * ***********************************************************************************************************
+ * NEWGEN SOFTWARE TECHNOLOGIES LIMITED
  *
- * @author OM33909T
+ * Group	: SDC Module	: API For ChatBoot File Name	: InvalidUsernamePassword.java Author	: Anil
+ * Kumar A Date written	: 23/07/2019
+ * ***********************************************************************************************************
  */
 public class InvalidUsernamePassword {
     private String InvalidUsernamePassword;

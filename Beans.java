@@ -31,6 +31,29 @@ public class Beans {
     private String bucket_subreason;
     private String invoice_amount;
     private String PONO;
+    private String endInvoiceDate;
+    private String startInvoiceDate;
+    private String token;
+    private String invoicedate;
+    
+
+    public String getInvoicedate() {
+        return invoicedate;
+    }
+
+    public void setInvoicedate(String invoicedate) {
+        this.invoicedate = invoicedate;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+
+        this.token = token;
+
+    }
 
     public String getPONO() {
         return PONO;
@@ -44,10 +67,25 @@ public class Beans {
         return invoice_amount;
     }
 
+    public String getEndInvoiceDate() {
+        return endInvoiceDate;
+    }
+
+    public void setEndInvoiceDate(String endInvoiceDate) {
+        this.endInvoiceDate = endInvoiceDate;
+    }
+
+    public String getStartInvoiceDate() {
+        return startInvoiceDate;
+    }
+
+    public void setStartInvoiceDate(String startInvoiceDate) {
+        this.startInvoiceDate = startInvoiceDate;
+    }
+
     public void setInvoice_amount(String invoice_amount) {
         this.invoice_amount = invoice_amount;
     }
-     
 
     public String getBucket_reason() {
         return bucket_reason;

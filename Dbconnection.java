@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -19,6 +20,7 @@ import java.util.Properties;
  * ***********************************************************************************************************
  */
 public class Dbconnection {
+
     GenerateLog log = new GenerateLog();
 
     private static String username = "";
@@ -26,27 +28,26 @@ public class Dbconnection {
     private static String databaseIP = "";
     private static String databasePort = "";
     private static String serviceName = "";
-    
-    
 
-    public  Statement getConnection() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+    public Statement getConnection() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         //String initialFilePath = System.getProperty("user.dir") + File.separator + "DBProperties.ini"; it points JBoss bin directory
-        String initialFilePath = System.getProperty("user.dir") + File.separator +"DBProperties.ini";
+
+        String initialFilePath = System.getProperty("user.dir") + File.separator + "DBProperties.ini";
         log.genlog("Inside Database Connection.......");
-        log.genlog("INI File path is------------>"+initialFilePath);
+        log.genlog("INI File path is------------>" + initialFilePath);
         FileInputStream IniFile = new FileInputStream(initialFilePath);
         Properties pro = new Properties();
         pro.load(IniFile);
-        username = pro.getProperty("userName");
-        password = pro.getProperty("password");
+        username = pro.getProperty("Dbusername");
+        password = pro.getProperty("Dbpassword");
         databaseIP = pro.getProperty("databaseIP");
         databasePort = pro.getProperty("databasePort");
         serviceName = pro.getProperty("serviceName");
-        log.genlog("username:"+username);
-        log.genlog("password:"+password);
-        log.genlog("databaseIP:"+databaseIP);
-        log.genlog("databasePort:"+databasePort);
-        log.genlog("serviceName:"+serviceName);
+        log.genlog("username:" + username);
+        log.genlog("password:" + password);
+        log.genlog("databaseIP:" + databaseIP);
+        log.genlog("databasePort:" + databasePort);
+        log.genlog("serviceName:" + serviceName);
         Connection conn = null;
         String dbURL = "jdbc:sqlserver://" + databaseIP + ":" + databasePort + ";databaseName={" + serviceName + "}";
         log.genlog("dbURL::::::" + dbURL);
@@ -54,7 +55,11 @@ public class Dbconnection {
         conn = DriverManager.getConnection(dbURL, username, password);
         log.genlog("Database Connected Succufully-------------");
         Statement st = conn.createStatement();
+        //int rs = st.executeUpdate(Query);
+        //Resultset rs=st.execute(Query)
+        // ResultSet rs = st.executeQuery(Query);
         return st;
+
     }
-    
+
 }

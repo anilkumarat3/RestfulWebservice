@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.newgen;
 
 import com.newgen.dmsapi.DMSCallBroker;
 import com.newgen.dmsapi.DMSXmlList;
 import com.newgen.dmsapi.DMSXmlResponse;
+import com.newgen.omni.jts.txn.mssql.odsap.NGOSAPQuery;
 import com.newgen.omni.wf.util.app.NGEjbClient;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,8 +12,12 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
+ * ***********************************************************************************************************
+ * NEWGEN SOFTWARE TECHNOLOGIES LIMITED
  *
- * @author OM33909T
+ * Group	: SDC Module	: API For ChatBoot File Name	: OmniData.java Author	: Anil
+ * Kumar A Date written	: 23/07/2019
+ * ***********************************************************************************************************
  */
 public class GetdatafromOmni {
 
@@ -36,11 +36,11 @@ public class GetdatafromOmni {
     NGEjbClient ejbObj;
     GenerateLog log = new GenerateLog();
 
-    public DMSXmlList getdatafromapp(String Query) throws IOException {
+    public DMSXmlList getdatafromapp(String Query, int count) throws IOException {
         log.genlog("Inside reading the data from omniflow application-------------");
         readINIFile();
         connectCabinet();
-        xmlList = getdat(Query);
+        xmlList = getdat(Query, count);
         //disconnectCabinet();
         return xmlList;
     }
@@ -65,8 +65,6 @@ public class GetdatafromOmni {
                 strFilePath = property.getProperty("strFilePath");
                 DocName = property.getProperty("DocName");
                 log.genlog("cabinetName: " + cabinetName + "  strUsername: " + strUsername + "  strPassword:  " + strPassword + "  strServerIp:  " + strServerIp + "  jtsport:  " + jtsport);
-                log.genlog("strFilePath:--->" + strFilePath);
-                log.genlog("DocName:--->" + DocName);
                 log.genlog("strServerIp:::" + strServerIp);
                 log.genlog("jtsport::" + jtsport);
             }
@@ -75,13 +73,13 @@ public class GetdatafromOmni {
         }
     }
 
-    public DMSXmlList getdat(String Query) {
+    public DMSXmlList getdat(String Query, int count) {
         String strInputXml = "";
         String strOutputXml = "";
         DMSXmlResponse xmlResponse = null;
         log.genlog("Query::::" + Query);
-        log.genlog("sQuery:::" + Query);
-        strOutputXml = getdata(Query, 19);
+        // log.genlog("sQuery:::" + Query);
+        strOutputXml = getdata(Query, count);
         xmlResponse = new DMSXmlResponse(strOutputXml);
         log.genlog("xmlResponse  MainCode:::::" + xmlResponse.getVal("MainCode"));
         if (xmlResponse.getVal("MainCode").equals("0")) {
@@ -135,22 +133,89 @@ public class GetdatafromOmni {
             strBuffer.append("<UserExist>N</UserExist>");
             strBuffer.append("<UserType>U</UserType>");
             strBuffer.append("<NGOConnectCabinet_Input>");
-            log.genlog("Input XML for Connecting the Cabinet::::::" + strBuffer.toString());
+            //log.genlog("Input XML for Connecting the Cabinet::::::" + strBuffer.toString());
             String strOutputXml = DMSCallBroker.execute(strBuffer.toString(), strServerIp, 3333, 0);
             xmlResponse = new DMSXmlResponse(strOutputXml);
-            log.genlog("OutPut XML for Connecting the cabinet::::::" + strOutputXml);
+            // log.genlog("OutPut XML for Connecting the cabinet::::::" + strOutputXml);
             int Status = Integer.parseInt(xmlResponse.getVal("status"));
             if (xmlResponse.getVal("status").equals("0")) {
                 userdbid = xmlResponse.getVal("UserDBId");
                 log.genlog("sessionId" + userdbid);
-                log.genlog("********Cabinet wems connected succesfully********");
+                log.genlog("********Cabinet  connected succesfully********");
             } else {
-                log.genlog("Cabinet wems connection failed");
+                log.genlog("Cabinet  connection failed");
             }
         } catch (Exception e) {
             log.genlog("Exception occured during Connecting the Cabinet" + e);
         }
 
+    }
+
+    public String NGIGetDatas(String sbQry, int iColCnt) {
+        String result = "";
+        try {
+            String sInputXml = null;
+            DMSXmlResponse xmlResponse = null;
+            DMSXmlList xmlList;
+            sInputXml = ("<?xml version=\"1.0\"?>");
+            sInputXml = sInputXml + ("<WFCustomBean_Input><Option>NGGetData</Option>");
+            sInputXml = sInputXml + ("<QryOption>NGGetData</QryOption>");
+            sInputXml = sInputXml + ("<EngineName>" + cabinetName + "</EngineName>");
+            sInputXml = sInputXml + ("<SessionId>" + userdbid + "</SessionId>");
+            sInputXml = sInputXml + ("<QueryString>" + sbQry.toString() + "</QueryString>");
+            sInputXml = sInputXml + ("<ColumnNo>" + iColCnt + "</ColumnNo>");
+            sInputXml = sInputXml + ("</WFCustomBean_Input>");
+            log.genlog("sInputXml------" + sInputXml);
+            log.genlog("Input XML for NGGetdata ::::::" + sInputXml.toString());
+            String strOutputXml = DMSCallBroker.execute(sInputXml.toString(), strServerIp, 3333, 0);
+            xmlResponse = new DMSXmlResponse(strOutputXml);
+            log.genlog("OutPut XML for NGGetdata :::::" + strOutputXml);
+            if (xmlResponse.getVal("MainCode").equals("0")) {
+                log.genlog("inside if loop");
+                xmlList = xmlResponse.createList("DataList", "Data");
+                log.genlog("xmlList:" + xmlList);
+                for (; xmlList.hasMoreElements(); xmlList.skip()) //if(xmlListScoa.hasMoreElements())
+                {
+                    result = xmlList.getVal("Value1");
+                    log.genlog("result::::" + result);
+                }
+
+            } else {
+                log.genlog(" failed");
+            }
+        } catch (Exception e) {
+            log.genlog("Exception occured " + e);
+        }
+        return result;
+
+    }
+
+    public void setData(String sQuery) {
+        String strOutputXml = "";
+        String strInputXml = "";
+        try {
+            String sInputXml = null;
+            DMSXmlResponse xmlResponse = null;
+            strInputXml = "<?xml version=\"1.0\"?>";
+            strInputXml = strInputXml + "<WFCustomBean_Input><Option>IGSetData</Option>";
+            strInputXml = strInputXml + "<QryOption>IGSetData</QryOption>";
+            strInputXml = strInputXml + "<EngineName>" + cabinetName + "</EngineName>";
+            strInputXml = strInputXml + "<SessionId>" + userdbid + "</SessionId>";
+            strInputXml = strInputXml + "<Query>" + sQuery + "</Query>";
+            strInputXml = strInputXml + "</WFCustomBean_Input>";
+            log.genlog("sInputXml------" + strInputXml);
+            log.genlog("Input XML for ngsetdata ::::::" + strInputXml.toString());
+            String sOutXml = DMSCallBroker.execute(strInputXml.toString(), strServerIp, 3333, 0);
+            xmlResponse = new DMSXmlResponse(sOutXml);
+            log.genlog("OutPut XML for ngsetdata :::::" + sOutXml);
+            if (xmlResponse.getVal("MainCode").equals("0")) {
+                log.genlog("Executed sucusfully::::");
+            } else {
+                log.genlog("failed");
+            }
+        } catch (Exception e) {
+            log.genlog("Exception in ExecuteSelectQry : " + e);
+        }
     }
 
     public void disconnectCabinet() {
